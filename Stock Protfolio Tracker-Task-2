@@ -1,0 +1,67 @@
+class Portfolio:
+    def __init__(self):
+        self.stocks = {}
+
+    def add_stock(self, symbol, quantity, price):
+        if symbol in self.stocks:
+            print(f"Stock {symbol} already exists in the portfolio.")
+        else:
+            self.stocks[symbol] = {'quantity': quantity, 'price': price}
+            print(f"Stock {symbol} added to the portfolio.")
+
+    def remove_stock(self, symbol):
+        if symbol in self.stocks:
+            del self.stocks[symbol]
+            print(f"Stock {symbol} removed from the portfolio.")
+        else:
+            print(f"Stock {symbol} not found in the portfolio.")
+
+    def update_stock_price(self, symbol, price):
+        if symbol in self.stocks:
+            self.stocks[symbol]['price'] = price
+            print(f"Stock {symbol} price updated to {price}.")
+        else:
+            print(f"Stock {symbol} not found in the portfolio.")
+
+    def display_portfolio(self):
+        if not self.stocks:
+            print("Portfolio is empty.")
+        else:
+            print("Portfolio:")
+            for symbol, details in self.stocks.items():
+                print(f"{symbol}: Quantity - {details['quantity']}, Price - {details['price']}")
+
+def main():
+    portfolio = Portfolio()
+
+    while True:
+        print("\n1. Add Stock")
+        print("2. Remove Stock")
+        print("3. Update Stock Price")
+        print("4. Display Portfolio")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            symbol = input("Enter stock symbol: ")
+            quantity = int(input("Enter quantity: "))
+            price = float(input("Enter price: "))
+            portfolio.add_stock(symbol, quantity, price)
+        elif choice == '2':
+            symbol = input("Enter stock symbol to remove: ")
+            portfolio.remove_stock(symbol)
+        elif choice == '3':
+            symbol = input("Enter stock symbol to update price: ")
+            price = float(input("Enter new price: "))
+            portfolio.update_stock_price(symbol, price)
+        elif choice == '4':
+            portfolio.display_portfolio()
+        elif choice == '5':
+            print("Exiting program...")
+            break
+        else:
+            print("Invalid choice. Please choose a number from 1 to 5.")
+
+if __name__ == "__main__":
+    main()
