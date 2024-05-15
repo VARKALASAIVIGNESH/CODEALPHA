@@ -1,0 +1,35 @@
+import random
+
+def greet():
+    responses = ["Hi there!", "Hello!", "Hey!"]
+    return random.choice(responses)
+
+def farewell():
+    responses = ["Goodbye!", "Bye!", "See you later!"]
+    return random.choice(responses)
+
+def respond_to_user_input(user_input):
+    if "how are you" in user_input:
+        return "I'm just a bot, but thanks for asking!"
+    elif "tell me a joke" in user_input:
+        jokes = ["Why don't scientists trust atoms? Because they make up everything!", 
+                 "What do you call fake spaghetti? An impasta!", 
+                 "Why did the scarecrow win an award? Because he was outstanding in his field!"]
+        return random.choice(jokes)
+    else:
+        return "Sorry, I didn't understand that."
+
+def chat():
+    print("Bot: " + greet())
+    while True:
+        user_input = input("You: ").lower()
+        if user_input == "bye":
+            print("Bot: " + farewell())
+            break
+        else:
+            response = respond_to_user_input(user_input)
+            print("Bot: " + response)
+
+if __name__ == "__main__":
+    print("Bot: Hello! How can I assist you today?")
+    chat()
