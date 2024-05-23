@@ -4,45 +4,30 @@ def choose_word():
     words = ['apple', 'banana', 'orange', 'grape', 'pineapple', 'strawberry', 'blueberry', 'kiwi']
     return random.choice(words)
 
-def display_word(word, guessed_letters):
-    display = ''
-    for letter in word:
-        if letter in guessed_letters:
-            display += letter
-        else:
-            display += '_'
-    return display
-
 def hangman():
     word = choose_word()
-    guessed_letters = []
     attempts = 6
 
     print("Welcome to Hangman!")
     print("Guess the fruit!")
-    print(display_word(word, guessed_letters))
 
     while True:
-        guess = input("Enter a letter: ").lower()
+        guess = input("Enter the whole word: ").lower()
 
-        if guess in guessed_letters:
-            print("You've already guessed that letter.")
+        if len(guess) != len(word):
+            print("Invalid input. Please guess the entire word.")
             continue
-        elif guess not in word:
+
+        if guess == word:
+            print("Congratulations! You guessed the word:", word)
+            break
+        else:
             attempts -= 1
             print("Incorrect guess! Attempts left:", attempts)
             if attempts == 0:
                 print("You lost! The word was:", word)
                 break
-        else:
-            guessed_letters.append(guess)
-
-        display = display_word(word, guessed_letters)
-        print(display)
-
-        if '_' not in display:
-            print("Congratulations! You guessed the word:", word)
-            break
 
 if __name__ == "__main__":
     hangman()
+
