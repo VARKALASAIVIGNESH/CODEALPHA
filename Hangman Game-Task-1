@@ -14,10 +14,6 @@ def hangman():
     while True:
         guess = input("Enter the whole word: ").lower()
 
-        if len(guess) != len(word):
-            print("Invalid input. Please guess the entire word.")
-            continue
-
         if guess == word:
             print("Congratulations! You guessed the word:", word)
             break
@@ -30,4 +26,3 @@ def hangman():
 
 if __name__ == "__main__":
     hangman()
-
